@@ -4,7 +4,7 @@
 FROM mayok/alpine-ruby
 
 # Node version
-ENV NODE_VERSION=v7.0.0 NPM_VERSION=3
+ENV NODE_VERSION=v7.0.0 NPM_VERSION=4.0.1
 
 # For base builds
 # ENV CONFIG_FLAGS="--without-npm" RM_DIRS=/usr/include
@@ -47,9 +47,9 @@ RUN apk add --no-cache curl make gcc g++ python linux-headers paxctl libgcc libs
 # Install NPM
 RUN apk add --no-cache curl alpine-sdk bash perl && \
   cd / && \
-  curl -o npm-v4.0.1.zip -sSL https://github.com/npm/npm/archive/v4.0.1.zip -k && \
-  unzip npm-v4.0.1.zip && \
-  cd npm-4.0.1 && \
+  curl -o npm-v${NPM_VERSION}.zip -sSL https://github.com/npm/npm/archive/v${NPM_VERSION}.zip -k && \
+  unzip npm-v${NPM_VERSION}.zip && \
+  cd npm-${NPM_VERSION} && \
   make && make install && \
   apk del curl alpine-sdk bash perl
 
